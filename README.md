@@ -11,3 +11,9 @@
 ![image](https://user-images.githubusercontent.com/31981663/229339051-8f07910e-7f5b-4271-9114-d6578753d036.png)
 
 ---
+
+[flora_fauna](https://github.com/deepdk/30-Day-Chart-Challenge-2023/tree/main/flora_fauna)
+
+![image](https://user-images.githubusercontent.com/31981663/229419012-831c08c7-4bb0-4a1f-a1c8-b669a840fefa.png)
+
+---
