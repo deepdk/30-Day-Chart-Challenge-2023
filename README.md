@@ -23,3 +23,9 @@
 ![image](https://user-images.githubusercontent.com/31981663/229823892-cd121ff1-93a0-4106-a943-e7f0aed1bf2c.png)
 
 ---
+
+[slope](https://github.com/deepdk/30-Day-Chart-Challenge-2023/tree/main/slope)
+
+![image](https://user-images.githubusercontent.com/31981663/230104665-f900d827-58f9-4512-8160-7cdc62042a6a.png)
+
+---
