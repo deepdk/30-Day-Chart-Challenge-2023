@@ -1,0 +1,128 @@
+---
+title: "day6"
+author: "Deepali Kank"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(janitor)
+library(scales)
+library(MetBrewer)
+library(lubridate)
+library(ggthemes)
+library(usmap)
+```
+
+```{r}
+df <- read_csv("D:/30daychart/hazards/laser.csv")
+head(df)
+```
+```{r}
+df <- df %>% 
+  clean_names()
+```
+
+
+```{r}
+df <- df %>% 
+  separate(incident_date,c("day","month","year"),sep = "-")
+head(df)
+```
+```{r}
+df %>% 
+  group_by(month,injury) %>% 
+  count(month) %>% 
+  ggplot(aes(month,n, fill = injury))+
+  geom_col()
+```
+
+
+```{r}
+df %>% 
+  count(state, sort = TRUE)
+```
+
+
+```{r}
+view(statepop)
+```
+
+
+```{r}
+df <- df %>%
+  mutate(state = str_to_lower(state)) %>% 
+  rename(region = state)
+```
+
+```{r}
+df1 <- df %>% 
+  count(region, sort = TRUE)
+```
+
+
+```{r}
+state = map_data("state")
+```
+
+```{r}
+cor <- state %>%
+  select(-group, -order)%>%
+  group_by(region) %>%
+  summarise(lan = mean(long),
+            latt = mean(lat))
+```
+
+```{r}
+df1 <- df1 %>% 
+  left_join(cor, by = 'region')
+```
+
+
+
+```{r, fig.width=20,fig.height=14}
+ggplot() +
+  geom_polygon(data = state, aes(long, lat, group = group), fill = '#0F0F0F', color = '#F5F5F5') +
+  geom_point(data = df1, aes(x = lan, y = latt), color = '#2DFF1E',size = 20) +
+  geom_text(data = df1, aes(label = n, x = lan, y = latt), 
+            size = 5, color = 'black', fontface = 'bold')+
+  my_theme()+
+  theme(axis.text.x = element_blank())+
+  theme(axis.text.y = element_blank())+
+  theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())+
+  theme(legend.position = 'none')
+```
+
+```{r,r, fig.width=20,fig.height=14}
+usa <- map_data("state")
+
+# Draw the map and add the data points in myData
+
+ggplot() +
+  geom_polygon(data = state, aes(long, lat, group = group), fill = '#0F0F0F', color = '#F5F5F5')+
+geom_point(data = df1, aes(x = lan, y = latt, size = n), color = "#2DFF1E") +
+  my_theme()+
+  theme(axis.text.x = element_blank())+
+  theme(axis.text.y = element_blank())+
+  theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())+
+  theme(legend.position = 'none')
+```
+```{r}
+ggplot()+
+  geom_polygon(
+        data = state, aes(x = long, y = lat, group = group), 
+        color = "gray95", fill = "#030303", size = 0.1, alpha = .3
+    )+
+  geom_point(
+        data = df1, 
+        aes(x = longitude, y = latitude, color = classification),
+        shape = 19, alpha = .5, size = 3
+    ) +
+ scale_color_manual(values = c("#FFFF00","#00F5FF"))+
+  coord_map()+
+my_theme()
+```
+
