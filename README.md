@@ -29,3 +29,10 @@
 ![image](https://user-images.githubusercontent.com/31981663/230104665-f900d827-58f9-4512-8160-7cdc62042a6a.png)
 
 ---
+
+[hazards](https://github.com/deepdk/30-Day-Chart-Challenge-2023/tree/main/hazards)
+
+![image](https://user-images.githubusercontent.com/31981663/230701457-1933daa4-4a5c-4321-8cae-ea71ae804f5e.png)
+
+---
+
